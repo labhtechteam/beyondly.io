@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyondly — Own the US market, from India</title>
+<meta name="description" content="Buy US stocks and ETFs, plus 25 more markets, from an IFSCA-regulated account in GIFT City. Fractional shares, USD settlement, Indian regulatory cover.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Old Glory Red and Old Glory Blue are the actual flag specifications. */
+  --ink:        #071324;
+  --ink-2:      #0C1E36;
+  --ink-3:      #12294a;
+  --paper:      #EDF2F9;
+  --muted:      #8398B2;
+  --muted-dim:  #4E6685;
+  --red:        #B31942;
+  --red-lift:   #D0264F;
+  --blue:       #0A3161;
+  --brass:      #D9AE45;
+  --rule:       rgba(157,183,214,.20);
+  --rule-soft:  rgba(157,183,214,.10);
+
+  --f-display: "Bodoni Moda", "Didot", Georgia, serif;
+  --f-body:    "Public Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono:    "IBM Plex Mono", ui-monospace, monospace;
+
+  --gut: clamp(20px, 5vw, 64px);
+  --max: 1200px;
+}
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+}
+
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--f-body);
+  font-size:17px;
+  line-height:1.6;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+.wrap{ width:100%; max-width:var(--max); margin:0 auto; padding-inline:var(--gut); }
+
+/* ---------- type ---------- */
+h1,h2,h3{ font-family:var(--f-display); font-weight:400; letter-spacing:-.015em; margin:0; }
+h1{ font-size:clamp(2.6rem, 6.6vw, 5.1rem); line-height:.98; }
+h2{ font-size:clamp(2rem, 4.4vw, 3.3rem); line-height:1.04; }
+h3{ font-size:clamp(1.2rem, 2vw, 1.5rem); line-height:1.2; }
+p{ margin:0 0 1em; }
+a{ color:inherit; }
+
+.eyebrow{
+  font-family:var(--f-mono);
+  font-size:.7rem;
+  letter-spacing:.19em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 1.4rem;
+  display:flex; align-items:center; gap:.7rem;
+}
+.eyebrow::before{
+  content:""; width:26px; height:1px; background:var(--red); flex:none;
+}
+.lede{ font-size:clamp(1.02rem,1.5vw,1.18rem); color:#BACAE0; max-width:56ch; }
+
+:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; border-radius:2px; }
+
+/* ---------- engraved guilloche, hero only ---------- */
+.engrave{
+  position:absolute; inset:0; pointer-events:none; opacity:.22;
+  background:
+    repeating-linear-gradient(78deg, transparent 0 3px, rgba(157,183,214,.055) 3px 4px),
+    repeating-linear-gradient(-78deg, transparent 0 3px, rgba(157,183,214,.045) 3px 4px);
+  -webkit-mask-image:radial-gradient(120% 90% at 78% 22%, #000 0%, transparent 66%);
+          mask-image:radial-gradient(120% 90% at 78% 22%, #000 0%, transparent 66%);
+}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky; top:0; z-index:60;
+  background:rgba(7,19,36,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule-soft);
+}
+.nav-in{ display:flex; align-items:center; gap:1.4rem; height:70px; }
+.mark{
+  font-family:var(--f-display); font-size:1.45rem; letter-spacing:.02em;
+  text-decoration:none; display:flex; align-items:baseline; gap:.3rem; flex:none;
+}
+.mark i{ font-style:normal; color:var(--red-lift); }
+.nav-links{ display:flex; gap:1.8rem; margin-left:auto; }
+.nav-links a{
+  font-size:.83rem; letter-spacing:.04em; text-decoration:none; color:var(--muted);
+  transition:color .18s;
+}
+.nav-links a:hover{ color:var(--paper); }
+.nav .btn{ flex:none; }
+@media(max-width:880px){ .nav-links{ display:none; } .nav .btn{ margin-left:auto; } }
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  font-family:var(--f-body); font-size:.9rem; font-weight:600; letter-spacing:.01em;
+  padding:.78rem 1.5rem; border-radius:2px; text-decoration:none;
+  border:1px solid transparent; cursor:pointer; transition:background .18s, border-color .18s, transform .18s;
+}
+.btn-primary{ background:var(--red); color:#fff; }
+.btn-primary:hover{ background:var(--red-lift); }
+.btn-ghost{ border-color:var(--rule); color:var(--paper); background:transparent; }
+.btn-ghost:hover{ border-color:var(--brass); }
+.btn-lg{ padding:1rem 1.9rem; font-size:.98rem; }
+
+/* ---------- hero ---------- */
+.hero{ position:relative; overflow:hidden; border-bottom:1px solid var(--rule-soft); }
+.hero::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+  background:linear-gradient(90deg, var(--blue) 0 33%, var(--paper) 33% 66%, var(--red) 66% 100%);
+  opacity:.6;
+}
+.hero-in{
+  position:relative; z-index:2;
+  display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(2rem,5vw,4.5rem);
+  align-items:center;
+  padding-block:clamp(3.6rem,8vw,6.4rem);
+}
+@media(max-width:940px){ .hero-in{ grid-template-columns:1fr; } }
+
+h1 em{ font-style:italic; color:var(--brass); }
+.hero-copy .lede{ margin-top:1.6rem; }
+.hero-cta{ display:flex; flex-wrap:wrap; gap:.8rem; margin-top:2.2rem; }
+.hero-note{
+  font-family:var(--f-mono); font-size:.72rem; color:var(--muted);
+  letter-spacing:.05em; margin-top:1.5rem;
+}
+
+/* ---------- signature: the session board ---------- */
+.board{
+  background:linear-gradient(170deg, var(--ink-2), #08182c);
+  border:1px solid var(--rule);
+  border-top:2px solid var(--red);
+  padding:1.7rem 1.7rem 1.4rem;
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.85);
+}
+.board-head{
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--f-mono); font-size:.66rem; letter-spacing:.17em;
+  text-transform:uppercase; color:var(--muted);
+  padding-bottom:1.1rem; border-bottom:1px solid var(--rule-soft);
+}
+.pill{ display:inline-flex; align-items:center; gap:.45rem; color:var(--paper); }
+.dot{ width:7px; height:7px; border-radius:50%; background:var(--muted); flex:none; }
+.dot.live{ background:#38C97C; box-shadow:0 0 0 0 rgba(56,201,124,.6); animation:pulse 2.4s infinite; }
+.dot.pre{ background:var(--brass); }
+.dot.shut{ background:var(--red-lift); }
+@keyframes pulse{ 70%{ box-shadow:0 0 0 9px rgba(56,201,124,0);} 100%{ box-shadow:0 0 0 0 rgba(56,201,124,0);} }
+
+.clocks{ display:grid; grid-template-columns:1fr 1fr; }
+.clock{ padding:1.5rem 0 1.2rem; }
+.clock + .clock{ border-left:1px solid var(--rule-soft); padding-left:1.4rem; }
+.clock-city{
+  font-family:var(--f-mono); font-size:.66rem; letter-spacing:.17em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:.5rem;
+}
+.clock-time{
+  font-family:var(--f-mono); font-weight:500;
+  font-size:clamp(1.7rem,3.4vw,2.3rem); line-height:1;
+  font-variant-numeric:tabular-nums; letter-spacing:-.02em;
+}
+.clock-time small{ font-size:.44em; color:var(--muted); margin-left:.3rem; letter-spacing:.1em; }
+.clock-date{ font-family:var(--f-mono); font-size:.68rem; color:var(--muted); margin-top:.45rem; }
+
+.session{ padding-top:1.1rem; border-top:1px solid var(--rule-soft); }
+.session-label{
+  display:flex; justify-content:space-between;
+  font-family:var(--f-mono); font-size:.64rem; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:.6rem;
+}
+.track{ height:3px; background:rgba(157,183,214,.14); position:relative; }
+.track-fill{ position:absolute; inset:0 auto 0 0; background:linear-gradient(90deg,var(--blue),var(--red-lift)); width:0; transition:width .9s ease; }
+.track-head{ position:absolute; top:50%; width:9px; height:9px; margin:-4.5px 0 0 -4.5px; border-radius:50%; background:var(--paper); left:0; transition:left .9s ease; }
+.session-msg{ font-size:.83rem; color:#BACAE0; margin-top:.85rem; }
+
+/* ---------- coverage tape ---------- */
+.tape{
+  border-block:1px solid var(--rule-soft);
+  background:var(--ink-2);
+  overflow:hidden; padding:.85rem 0;
+}
+.tape-row{ display:flex; width:max-content; animation:slide 46s linear infinite; }
+.tape:hover .tape-row{ animation-play-state:paused; }
+@keyframes slide{ to{ transform:translateX(-50%); } }
+.tape-item{
+  font-family:var(--f-mono); font-size:.74rem; letter-spacing:.14em;
+  color:var(--muted); padding-inline:1.5rem; white-space:nowrap;
+  display:flex; align-items:center; gap:1.5rem;
+}
+.tape-item::after{ content:""; width:4px; height:4px; background:var(--red); border-radius:50%; }
+.tape-item b{ color:var(--paper); font-weight:500; }
+
+/* ---------- sections ---------- */
+section{ padding-block:clamp(4rem,8.5vw,7rem); }
+.sec-head{ max-width:62ch; margin-bottom:clamp(2.4rem,5vw,3.6rem); }
+.sec-head h2 + p{ margin-top:1.2rem; }
+
+/* benefits */
+.benefits{ display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background:var(--rule-soft); border:1px solid var(--rule-soft); }
+.ben{ background:var(--ink); padding:clamp(1.6rem,3vw,2.4rem); grid-column:span 2; transition:background .25s; }
+.ben:hover{ background:var(--ink-2); }
+.ben.wide{ grid-column:span 3; }
+.ben.lead{ grid-column:span 6; background:linear-gradient(115deg,var(--ink-2),var(--ink) 62%); }
+.ben-key{
+  font-family:var(--f-display); font-size:clamp(2.2rem,4.6vw,3.4rem); line-height:1;
+  color:var(--brass); display:block; margin-bottom:.9rem;
+}
+.ben.lead .ben-key{ color:var(--paper); }
+.ben h3{ margin-bottom:.6rem; }
+.ben p{ color:#A8BDD6; font-size:.94rem; margin:0; }
+.ben.lead p{ max-width:60ch; font-size:1rem; }
+@media(max-width:900px){
+  .benefits{ grid-template-columns:1fr 1fr; }
+  .ben, .ben.wide, .ben.lead{ grid-column:span 2; }
+}
+@media(max-width:600px){ .benefits{ grid-template-columns:1fr; } .ben,.ben.wide,.ben.lead{ grid-column:span 1; } }
+
+/* markets */
+.markets{ background:var(--ink-2); border-block:1px solid var(--rule-soft); }
+.mkt-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(2rem,5vw,4rem); align-items:start; }
+@media(max-width:880px){ .mkt-grid{ grid-template-columns:1fr; } }
+.chiplist{ display:flex; flex-wrap:wrap; gap:.5rem; }
+.chip{
+  font-family:var(--f-mono); font-size:.73rem; letter-spacing:.07em;
+  border:1px solid var(--rule); padding:.42rem .8rem; color:#BACAE0;
+  transition:border-color .18s, color .18s;
+}
+.chip:hover{ border-color:var(--brass); color:var(--paper); }
+.chip.us{ border-color:var(--red); color:#fff; background:rgba(179,25,66,.22); }
+
+/* how it works */
+.steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule-soft); border:1px solid var(--rule-soft); }
+.step{ background:var(--ink); padding:clamp(1.5rem,2.6vw,2.1rem); }
+.step-n{
+  font-family:var(--f-mono); font-size:.7rem; letter-spacing:.2em; color:var(--red-lift);
+  display:block; margin-bottom:1.4rem;
+}
+.step h3{ font-size:1.15rem; margin-bottom:.55rem; }
+.step p{ font-size:.9rem; color:#A8BDD6; margin:0; }
+@media(max-width:880px){ .steps{ grid-template-columns:1fr 1fr; } }
+@media(max-width:520px){ .steps{ grid-template-columns:1fr; } }
+
+/* regulator strip */
+.reg{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule-soft); margin-top:2.5rem; border:1px solid var(--rule-soft); }
+.reg div{ background:var(--ink); padding:1.4rem 1.5rem; }
+.reg dt{ font-family:var(--f-mono); font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:.5rem; }
+.reg dd{ margin:0; font-size:.95rem; color:var(--paper); }
+@media(max-width:760px){ .reg{ grid-template-columns:1fr; } }
+
+/* faq */
+.faq{ border-top:1px solid var(--rule-soft); }
+.faq-list{ border-top:1px solid var(--rule); max-width:900px; }
+details{ border-bottom:1px solid var(--rule); }
+summary{
+  list-style:none; cursor:pointer; padding:1.35rem 2.6rem 1.35rem 0; position:relative;
+  font-size:1.03rem; font-weight:500; color:var(--paper); transition:color .18s;
+}
+summary::-webkit-details-marker{ display:none; }
+summary:hover{ color:var(--brass); }
+summary::after{
+  content:"+"; position:absolute; right:.3rem; top:50%; transform:translateY(-50%);
+  font-family:var(--f-mono); font-size:1.25rem; color:var(--red-lift); line-height:1;
+}
+details[open] summary::after{ content:"–"; }
+details[open] summary{ color:var(--brass); }
+.answer{ padding:0 2.6rem 1.7rem 0; color:#A8BDD6; font-size:.96rem; max-width:74ch; }
+.answer p:last-child{ margin-bottom:0; }
+.answer strong{ color:var(--paper); font-weight:600; }
+.answer .mono{ font-family:var(--f-mono); font-size:.9em; color:var(--brass); }
+
+/* cta band */
+.cta{
+  background:linear-gradient(120deg,var(--blue),#071b33 70%);
+  border-block:1px solid var(--rule-soft); text-align:center;
+}
+.cta h2{ max-width:20ch; margin-inline:auto; }
+.cta p{ max-width:52ch; margin:1.3rem auto 2rem; color:#BACAE0; }
+.cta .hero-cta{ justify-content:center; }
+
+/* footer */
+footer{ padding-block:3.4rem 4rem; font-size:.83rem; color:var(--muted); }
+.foot-top{ display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:space-between; align-items:center; padding-bottom:1.8rem; border-bottom:1px solid var(--rule-soft); }
+.foot-links{ display:flex; flex-wrap:wrap; gap:1.4rem; }
+.foot-links a{ text-decoration:none; color:var(--muted); }
+.foot-links a:hover{ color:var(--paper); }
+.disclosure{ margin-top:1.8rem; max-width:95ch; line-height:1.65; font-size:.78rem; }
+.disclosure p + p{ margin-top:.8rem; }
+
+/* ---------- engraved illustration language ---------- */
+.ill{ display:block; }
+.ill .hair{ fill:none; stroke:currentColor; stroke-width:1; stroke-linecap:round; }
+.ill .hair-2{ fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.ill .accent{ fill:none; stroke:var(--red-lift); stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.ill .wash{ fill:rgba(157,183,214,.07); stroke:none; }
+.ill .sym{ font-family:var(--f-display); font-size:19px; fill:currentColor; stroke:none; }
+
+/* hero watermark: engraved exchange facade */
+.facade{
+  position:absolute; z-index:1; pointer-events:none;
+  left:-2vw; bottom:-14px;
+  width:clamp(300px,32vw,440px); height:auto;
+  color:var(--paper); opacity:.11;
+}
+@media(max-width:940px){ .facade{ display:none; } }
+
+/* spot glyphs */
+.glyph{ width:50px; height:50px; color:var(--brass); margin-bottom:1.15rem; }
+.step .glyph{ width:42px; height:42px; color:var(--muted); margin-bottom:1.15rem; }
+.step:hover .glyph{ color:var(--brass); }
+
+/* lead card: proportion chart */
+.ben.lead{ display:grid; grid-template-columns:1.02fr .98fr; gap:clamp(1.5rem,4vw,3.2rem); align-items:center; }
+.lead-chart{ margin:0; color:var(--muted); }
+.lead-chart svg{ width:100%; height:auto; }
+.lead-chart text{ font-family:var(--f-mono); fill:currentColor; }
+.lead-chart .t-cap{ font-size:9.5px; letter-spacing:1.6px; }
+.lead-chart .t-in{ font-size:10.5px; letter-spacing:1.4px; fill:#fff; }
+.lead-chart .t-big{ font-family:var(--f-display); font-size:30px; fill:#fff; }
+.lead-chart .seg-us{ fill:rgba(179,25,66,.55); stroke:var(--red-lift); stroke-width:1.2; }
+.lead-chart .seg-row{ fill:rgba(157,183,214,.07); stroke:rgba(157,183,214,.45); stroke-width:1.2; }
+.lead-chart .seg-in{ fill:var(--brass); stroke:none; }
+@media(max-width:820px){ .ben.lead{ grid-template-columns:1fr; } }
+
+/* engraved globe */
+.globe{ width:100%; max-width:320px; height:auto; color:var(--muted); margin:0 auto 2rem; display:block; }
+.globe .mk{ fill:var(--brass); stroke:none; }
+.globe .mk-us{ fill:var(--red-lift); stroke:none; }
+.globe .halo{ fill:none; stroke:var(--red-lift); stroke-width:1.2; opacity:.55; }
+
+/* opening bell */
+.bell{ width:60px; height:60px; margin:0 auto 1.5rem; display:block; color:var(--brass); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="mark" href="#top">Beyondly<i>.</i></a>
+    <div class="nav-links">
+      <a href="#why">Why the US</a>
+      <a href="#markets">Markets</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-primary" href="#open">Open an account</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="engrave" aria-hidden="true"></div>
+  <svg class="facade ill" viewBox="0 0 460 320" aria-hidden="true" focusable="false">
+      <path class="hair-2" d="M14 120 L230 18 L446 120 Z"/>
+      <path class="hair" d="M62 106 L230 27 L398 106"/>
+      <path class="hair" d="M100 98 L230 37 L360 98"/>
+      <path class="hair" d="M138 90 L230 47 L322 90"/>
+      <path class="hair" d="M176 82 L230 57 L284 82"/>
+      <path class="hair-2" d="M4 120 H456"/>
+      <path class="hair" d="M4 134 H456"/>
+      <path class="hair-2" d="M16 148 H444"/>
+    <path class="hair" d="M39 148 h44 v10 h-44 Z"/>
+    <path class="hair-2" d="M44 158 v98"/><path class="hair-2" d="M78 158 v98"/>
+    <path class="hair" d="M53 164 v86"/><path class="hair" d="M61 164 v86"/><path class="hair" d="M69 164 v86"/>
+    <path class="hair" d="M39 256 h44 v12 h-44 Z"/>
+    <path class="hair" d="M105 148 h44 v10 h-44 Z"/>
+    <path class="hair-2" d="M110 158 v98"/><path class="hair-2" d="M144 158 v98"/>
+    <path class="hair" d="M119 164 v86"/><path class="hair" d="M127 164 v86"/><path class="hair" d="M135 164 v86"/>
+    <path class="hair" d="M105 256 h44 v12 h-44 Z"/>
+    <path class="hair" d="M171 148 h44 v10 h-44 Z"/>
+    <path class="hair-2" d="M176 158 v98"/><path class="hair-2" d="M210 158 v98"/>
+    <path class="hair" d="M185 164 v86"/><path class="hair" d="M193 164 v86"/><path class="hair" d="M201 164 v86"/>
+    <path class="hair" d="M171 256 h44 v12 h-44 Z"/>
+    <path class="hair" d="M237 148 h44 v10 h-44 Z"/>
+    <path class="hair-2" d="M242 158 v98"/><path class="hair-2" d="M276 158 v98"/>
+    <path class="hair" d="M251 164 v86"/><path class="hair" d="M259 164 v86"/><path class="hair" d="M267 164 v86"/>
+    <path class="hair" d="M237 256 h44 v12 h-44 Z"/>
+    <path class="hair" d="M303 148 h44 v10 h-44 Z"/>
+    <path class="hair-2" d="M308 158 v98"/><path class="hair-2" d="M342 158 v98"/>
+    <path class="hair" d="M317 164 v86"/><path class="hair" d="M325 164 v86"/><path class="hair" d="M333 164 v86"/>
+    <path class="hair" d="M303 256 h44 v12 h-44 Z"/>
+    <path class="hair" d="M369 148 h44 v10 h-44 Z"/>
+    <path class="hair-2" d="M374 158 v98"/><path class="hair-2" d="M408 158 v98"/>
+    <path class="hair" d="M383 164 v86"/><path class="hair" d="M391 164 v86"/><path class="hair" d="M399 164 v86"/>
+    <path class="hair" d="M369 256 h44 v12 h-44 Z"/>
+    <path class="hair" d="M30 268 H430"/>
+      <path class="hair" d="M18 284 H442"/>
+      <path class="hair" d="M6 300 H454"/>
+      <path class="hair-2" d="M0 316 H460"/>
+    </svg>
+  <div class="wrap hero-in">
+
+    <div class="hero-copy">
+      <p class="eyebrow">IFSCA-regulated · GIFT City IFSC</p>
+      <h1>The world's largest market opens <em>after you get home.</em></h1>
+      <p class="lede">Beyondly gives Indian investors a direct account in US equities and ETFs — plus 25 other markets — settled in dollars, held in your name, and regulated from India's own international financial centre.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#open">Open an account</a>
+        <a class="btn btn-ghost btn-lg" href="#why">Why the US market</a>
+      </div>
+      <p class="hero-note">Remittance under RBI's LRS · Fractional shares from $1 · No STT or stamp duty</p>
+    </div>
+
+    <div class="board" id="board" aria-live="polite">
+      <div class="board-head">
+        <span>US Equity Session</span>
+        <span class="pill"><span class="dot" id="statusDot"></span><span id="statusText">Checking…</span></span>
+      </div>
+
+      <div class="clocks">
+        <div class="clock">
+          <div class="clock-city">New York</div>
+          <div class="clock-time" id="nyTime">--:--:--<small id="nyMeridiem"></small></div>
+          <div class="clock-date" id="nyDate">—</div>
+        </div>
+        <div class="clock">
+          <div class="clock-city">India</div>
+          <div class="clock-time" id="inTime">--:--:--<small id="inMeridiem"></small></div>
+          <div class="clock-date" id="inDate">—</div>
+        </div>
+      </div>
+
+      <div class="session">
+        <div class="session-label"><span>9:30 AM ET</span><span>4:00 PM ET</span></div>
+        <div class="track"><div class="track-fill" id="trackFill"></div><div class="track-head" id="trackHead"></div></div>
+        <p class="session-msg" id="sessionMsg">Reading the market calendar…</p>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<div class="tape" aria-hidden="true">
+  <div class="tape-row" id="tapeRow"></div>
+</div>
+
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Why the US market</p>
+      <h2>Your salary, your rent and your savings are all one economy. Your portfolio doesn't have to be.</h2>
+      <p class="lede">Indian equities are roughly one twenty-fifth of global market value. Everything else — the chipmakers, the cloud platforms, the drug pipelines, the brands in your own home — lists somewhere else. Mostly in New York.</p>
+    </div>
+
+    <div class="benefits">
+      <article class="ben lead">
+        <div class="lead-copy">
+        <span class="ben-key">~60%</span>
+        <h3>Of the world's listed equity value sits in the United States</h3>
+        <p>India is a fast-growing sliver of the global market; the US is the majority of it. Owning only Indian equities means voluntarily skipping most of the investable world — and concentrating your career, your currency and your capital in a single economy at the same time.</p>
+        </div>
+        <figure class="lead-chart">
+          <svg viewBox="0 0 420 210" aria-label="The United States is roughly 60 percent of global listed equity value; India is roughly 4 percent." role="img">
+            <text class="t-cap" x="10" y="24">SHARE OF GLOBAL LISTED EQUITY VALUE</text>
+            <path d="M10 34 H410" stroke="rgba(157,183,214,.25)" stroke-width="1"/>
+
+            <rect class="seg-us"  x="10"  y="62" width="240" height="58"/>
+            <rect class="seg-row" x="250" y="62" width="144" height="58"/>
+            <rect class="seg-in"  x="394" y="62" width="16"  height="58"/>
+
+            <path class="hair" d="M262 66 v50 M274 66 v50 M286 66 v50 M298 66 v50 M310 66 v50 M322 66 v50 M334 66 v50 M346 66 v50 M358 66 v50 M370 66 v50 M382 66 v50" opacity=".45"/>
+
+            <text class="t-in" x="24" y="86">UNITED STATES</text>
+            <text class="t-big" x="24" y="112">60%</text>
+
+            <path d="M322 120 V146 H300" stroke="rgba(157,183,214,.45)" stroke-width="1" fill="none"/>
+            <text class="t-cap" x="292" y="150" text-anchor="end">REST OF WORLD  36%</text>
+
+            <path d="M402 120 V178 H360" stroke="var(--brass)" stroke-width="1" fill="none" opacity=".7"/>
+            <text class="t-cap" x="352" y="182" text-anchor="end" fill="var(--brass)">INDIA  4%</text>
+          </svg>
+        </figure>
+      </article>
+
+      <article class="ben">
+        <svg class="glyph ill" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <circle class="hair-2" cx="24" cy="21" r="14"/>
+          <circle class="hair" cx="24" cy="21" r="9"/>
+          <circle class="hair" cx="24" cy="21" r="4"/>
+          <path class="hair" d="M24 7 v4 M24 31 v4 M10 21 h4 M34 21 h4 M14 11 l3 3 M31 28 l3 3 M34 11 l-3 3 M17 28 l-3 3"/>
+          <path class="accent" d="M18 33 L14 46 L24 41 L34 46 L30 33"/>
+        </svg>
+        <h3>Own what you already use</h3>
+        <p>The phone in your hand, the cloud your company runs on, the search engine, the streaming service, the GPUs behind every AI product — almost none of it is listed in India. In New York, you can be a shareholder instead of only a customer.</p>
+      </article>
+
+      <article class="ben">
+        <svg class="glyph ill" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <rect class="hair-2" x="13" y="13" width="22" height="22" rx="1"/>
+          <rect class="accent" x="20" y="20" width="8" height="8" rx="1"/>
+          <path class="hair" d="M18 13 V6 M24 13 V6 M30 13 V6 M18 35 v7 M24 35 v7 M30 35 v7 M13 18 H6 M13 24 H6 M13 30 H6 M35 18 h7 M35 24 h7 M35 30 h7"/>
+        </svg>
+        <h3>Sectors India doesn't list</h3>
+        <p>Semiconductors, global software platforms, biotech, aerospace, defence primes, medical devices. These are entire industries with no meaningful listed equivalent on Indian exchanges.</p>
+      </article>
+
+      <article class="ben">
+        <svg class="glyph ill" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <circle class="hair-2" cx="14" cy="30" r="10"/>
+          <circle class="hair-2" cx="34" cy="30" r="10"/>
+          <text class="sym" x="14" y="36" text-anchor="middle">&#8377;</text>
+          <text class="sym" x="34" y="36" text-anchor="middle">$</text>
+          <path class="accent" d="M9 15 C16 5 32 5 39 15"/>
+          <path class="accent" d="M39 15 l-6 -1 M39 15 l-1 -6"/>
+        </svg>
+        <h3>A hedge against the rupee</h3>
+        <p>The rupee has trended weaker against the dollar over decades. Dollar-denominated assets turn that drift from a cost into a tailwind — and give your future dollar expenses, like a child's education abroad, a matching asset.</p>
+      </article>
+
+      <article class="ben">
+        <svg class="glyph ill" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <circle class="hair-2" cx="24" cy="24" r="15"/>
+          <circle class="hair" cx="24" cy="24" r="10"/>
+          <path class="accent" d="M24 24 V9 A15 15 0 0 1 37 16.5 Z" fill="rgba(208,38,79,.35)"/>
+          <path class="hair" d="M24 24 L37 16.5"/>
+        </svg>
+        <h3>Start with a dollar, not a lakh</h3>
+        <p>Fractional shares mean a $600 stock is not out of reach. Build a real position in a real company with the amount you actually want to invest this month.</p>
+      </article>
+
+      <article class="ben wide">
+        <svg class="glyph ill" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="hair-2" d="M24 6 L44 16 L24 26 L4 16 Z"/>
+          <path class="hair" d="M4 24 L24 34 L44 24"/>
+          <path class="accent" d="M4 32 L24 42 L44 32"/>
+        </svg>
+        <h3>The deepest ETF shelf in the world</h3>
+        <p>Thousands of listed funds covering total-market indices, single sectors, factors, bonds, commodities and specific themes — usually at fees a fraction of what the same exposure costs through an Indian feeder route, and without a fund-house cap on how much can be invested.</p>
+      </article>
+
+      <article class="ben wide">
+        <svg class="glyph ill" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="hair-2" d="M4 34 C11 12 17 40 24 22 C31 6 38 30 44 16"/>
+          <path class="accent" d="M4 20 C11 38 17 14 24 30 C31 44 38 20 44 34"/>
+        </svg>
+        <h3>Different weather, same portfolio</h3>
+        <p>US and Indian markets respond to different rate cycles, different currencies and different demand. Holding both has historically produced a steadier line than holding either alone — which is the actual point of diversification.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="markets" id="markets">
+  <div class="wrap mkt-grid">
+    <div>
+      <p class="eyebrow">Coverage</p>
+      <h2>The US first. Then 25 more.</h2>
+      <p class="lede" style="margin-top:1.2rem">US equities and ETFs are what most Beyondly investors come for, and where the platform goes deepest — thousands of listed stocks and funds, fractional order sizes, and full corporate-action handling. When you want to go further, the same account reaches developed and emerging markets across Europe, Asia-Pacific, the Americas and Africa.</p>
+      <p class="hero-note" style="margin-top:1.6rem">Equities and ETFs only. Overseas derivatives are not permitted to Indian residents under LRS.</p>
+    </div>
+    <div>
+      <svg class="globe ill" viewBox="0 0 320 320" aria-hidden="true" focusable="false">
+        <circle class="hair-2" cx="160" cy="160" r="140"/>
+        <ellipse class="hair" cx="160" cy="39"  rx="70"  ry="11"/>
+        <ellipse class="hair" cx="160" cy="90"  rx="121" ry="19"/>
+        <ellipse class="hair" cx="160" cy="160" rx="140" ry="25"/>
+        <ellipse class="hair" cx="160" cy="230" rx="121" ry="19"/>
+        <ellipse class="hair" cx="160" cy="281" rx="70"  ry="11"/>
+        <ellipse class="hair" cx="160" cy="160" rx="99" ry="140"/>
+        <ellipse class="hair" cx="160" cy="160" rx="48" ry="140"/>
+        <path class="hair" d="M160 20 V300"/>
+        <circle class="halo" cx="103" cy="116" r="15"/>
+        <circle class="mk-us" cx="103" cy="116" r="7"/>
+        <circle class="mk" cx="132" cy="90"  r="3.5"/>
+        <circle class="mk" cx="167" cy="97"  r="3.5"/>
+        <circle class="mk" cx="184" cy="86"  r="3.5"/>
+        <circle class="mk" cx="199" cy="106" r="3.5"/>
+        <circle class="mk" cx="226" cy="122" r="3.5"/>
+        <circle class="mk" cx="240" cy="150" r="3.5"/>
+        <circle class="mk" cx="216" cy="176" r="3.5"/>
+        <circle class="mk" cx="176" cy="190" r="3.5"/>
+        <circle class="mk" cx="128" cy="205" r="3.5"/>
+        <circle class="mk" cx="190" cy="232" r="3.5"/>
+        <circle class="mk" cx="238" cy="212" r="3.5"/>
+        <circle class="mk" cx="90"  cy="176" r="3.5"/>
+      </svg>
+      <div class="chiplist">
+        <span class="chip us">United States</span>
+        <span class="chip">Canada</span><span class="chip">United Kingdom</span><span class="chip">Ireland</span>
+        <span class="chip">Germany</span><span class="chip">France</span><span class="chip">Netherlands</span>
+        <span class="chip">Belgium</span><span class="chip">Switzerland</span><span class="chip">Austria</span>
+        <span class="chip">Italy</span><span class="chip">Spain</span><span class="chip">Portugal</span>
+        <span class="chip">Denmark</span><span class="chip">Sweden</span><span class="chip">Norway</span>
+        <span class="chip">Finland</span><span class="chip">Poland</span><span class="chip">Japan</span>
+        <span class="chip">Hong Kong</span><span class="chip">Singapore</span><span class="chip">Australia</span>
+        <span class="chip">New Zealand</span><span class="chip">Mexico</span><span class="chip">South Africa</span>
+        <span class="chip">Israel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">How it works</p>
+      <h2>Four steps, all of them inside Indian regulation.</h2>
+    </div>
+
+    <div class="steps">
+      <article class="step">
+        <svg class="glyph ill" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="hair-2" d="M11 5 h20 l7 7 v24 a2 2 0 0 1 -2 2 H13 a2 2 0 0 1 -2 -2 V7 a2 2 0 0 1 2 -2 Z"/>
+          <path class="hair" d="M31 5 v7 h7 M17 17 h14 M17 23 h14 M17 29 h8"/>
+          <circle class="accent" cx="34" cy="38" r="7"/>
+          <path class="accent" d="M31 45 l3 -2 l3 2"/>
+        </svg>
+        <span class="step-n">STEP 01</span>
+        <h3>Open your account</h3>
+        <p>Digital KYC with PAN and Aadhaar, plus Form W-8BEN so US dividend withholding is applied at the 25% treaty rate rather than 30%.</p>
+      </article>
+      <article class="step">
+        <svg class="glyph ill" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="hair-2" d="M15 8 v32 M33 8 v32"/>
+          <path class="accent" d="M4 24 H44 M44 24 l-7 -5 M44 24 l-7 5"/>
+          <text class="sym" x="9" y="18" text-anchor="middle">&#8377;</text>
+          <text class="sym" x="40" y="18" text-anchor="middle">$</text>
+        </svg>
+        <span class="step-n">STEP 02</span>
+        <h3>Fund it under LRS</h3>
+        <p>Transfer rupees from your Indian bank under the Liberalised Remittance Scheme. They convert to USD and land in your Beyondly account.</p>
+      </article>
+      <article class="step">
+        <svg class="glyph ill" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <rect class="hair-2" x="5" y="12" width="38" height="26" rx="1"/>
+          <path class="hair" d="M5 18 h38 M12 26 h13 M12 32 h9"/>
+          <circle class="accent" cx="34" cy="29" r="6"/>
+          <path class="accent" d="M34 29 V23 A6 6 0 0 1 39.2 32 Z"/>
+        </svg>
+        <span class="step-n">STEP 03</span>
+        <h3>Buy shares, whole or fractional</h3>
+        <p>Place orders during the US session or queue them for the open. Shares are held in your name at the US clearing broker.</p>
+      </article>
+      <article class="step">
+        <svg class="glyph ill" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="hair-2" d="M8 40 V22 M18 40 V14 M28 40 V26 M38 40 V10"/>
+          <path class="hair" d="M4 44 H44"/>
+          <path class="accent" d="M40 6 C24 -2 8 8 8 18 M8 18 l5 -4 M8 18 l-4 -5"/>
+        </svg>
+        <span class="step-n">STEP 04</span>
+        <h3>Track, file and repatriate</h3>
+        <p>Statements built for Indian filing — Schedule FA, Form 67, capital gains in rupees. Sell and bring funds home whenever you choose.</p>
+      </article>
+    </div>
+
+    <dl class="reg">
+      <div>
+        <dt>Regulator</dt>
+        <dd>International Financial Services Centres Authority (IFSCA), the unified regulator for GIFT City.</dd>
+      </div>
+      <div>
+        <dt>Jurisdiction</dt>
+        <dd>GIFT City IFSC, Gujarat — treated as offshore under FEMA, governed under Indian law.</dd>
+      </div>
+      <div>
+        <dt>Remittance route</dt>
+        <dd>RBI's Liberalised Remittance Scheme — up to USD 250,000 per person, per financial year.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Questions</p>
+      <h2>The things people actually ask before they send money abroad.</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <details open>
+        <summary>Is it legal for a resident Indian to invest in US stocks?</summary>
+        <div class="answer">
+          <p>Yes. The RBI's Liberalised Remittance Scheme permits every resident individual — including minors, through a guardian — to remit up to <strong>USD 250,000 per financial year</strong> for permitted purposes, and overseas investment in shares and ETFs is one of them.</p>
+          <p>Beyondly is registered with IFSCA and operates from GIFT City, so your account sits inside India's own international financial centre. Your KYC is Indian, your recourse is under Indian law, and every remittance is FEMA-compliant by construction.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What is TCS, and how much will it cost me?</summary>
+        <div class="answer">
+          <p>Tax Collected at Source applies to outward remittances. For FY 2026–27: <strong>no TCS on the first ₹10 lakh</strong> you remit in a financial year, counted across all banks and all purposes combined. Above that threshold, investment remittances attract <strong>20%</strong>.</p>
+          <p>TCS is not a fee and it is not lost. It is advance tax credited to your PAN, appears in your Form 26AS and AIS, and is set off against your total tax liability when you file. Anything in excess is refunded. The only real effect is on cash flow.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How are my gains and dividends taxed?</summary>
+        <div class="answer">
+          <p><strong>In the US:</strong> dividends are withheld at 25% under the India–US treaty, provided your W-8BEN is on file. The US does not tax capital gains for Indian residents.</p>
+          <p><strong>In India:</strong> dividends are added to your income and taxed at your slab rate, with credit for the US withholding claimed through <span class="mono">Form 67</span>. Gains on shares held more than 24 months are long-term and taxed at 12.5%; anything shorter is taxed at your slab rate. Foreign holdings must be disclosed in <span class="mono">Schedule FA</span> of your return.</p>
+          <p>Rates and thresholds change with each Union Budget. Treat this as orientation, not tax advice, and confirm your own position with a chartered accountant.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>When is the US market actually open, in Indian time?</summary>
+        <div class="answer">
+          <p>The regular session runs 9:30 AM to 4:00 PM New York time. From roughly mid-March to early November, when the US is on daylight saving, that is <strong>7:00 PM to 1:30 AM IST</strong>. For the rest of the year it shifts an hour later, to <strong>8:00 PM to 2:30 AM IST</strong>.</p>
+          <p>You can place orders at any hour. Orders entered while the market is shut are queued and sent when it opens. The board at the top of this page tracks the live session for you.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Who actually holds my shares?</summary>
+        <div class="answer">
+          <p>The shares are held in your name at the US clearing broker, not pooled into a fund or a wrapper. You are the beneficial owner, and you receive dividends and corporate-action entitlements directly.</p>
+          <p>The US clearing broker is a member of the Securities Investor Protection Corporation, which covers up to USD 500,000 per customer — including up to USD 250,000 in cash — if the broker fails. SIPC protects against broker failure. It does not protect you against your shares going down.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Why does GIFT City matter? Couldn't I just open a foreign brokerage account?</summary>
+        <div class="answer">
+          <p>You could, and many people do. The difference is where you stand if something goes wrong. A GIFT City account is regulated by IFSCA under Indian law: Indian KYC, Indian grievance redressal, Indian dispute resolution, and a single regulator overseeing the whole chain from your rupee deposit to your dollar trade.</p>
+          <p>There is also a cost difference. GIFT City transactions carry no Securities Transaction Tax, no Commodity Transaction Tax and no stamp duty.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Can I trade options, futures or crypto?</summary>
+        <div class="answer">
+          <p>No. Indian residents are not permitted to use LRS funds for overseas derivatives, margin trading or speculative activity. Beyondly offers listed equities and ETFs only — long positions, fully paid, in cash.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is there a US estate tax risk I should know about?</summary>
+        <div class="answer">
+          <p>Yes, and it is the point most platforms skip. US-situated assets held by a non-resident alien above roughly <strong>USD 60,000</strong> can be exposed to US estate tax on death, at rates that climb steeply. The India–US treaty covers income tax; it does not cover estate tax.</p>
+          <p>It is a planning problem, not a reason to stay out — but if your US holdings are heading past that figure, talk to an advisor about how the account is structured and titled.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How do I get my money back to India?</summary>
+        <div class="answer">
+          <p>Sell your holdings, let the trade settle, and request a withdrawal to the Indian bank account linked to your profile. Funds are converted back to rupees on the way in.</p>
+          <p>Money coming home does not consume your LRS limit — LRS governs outward remittance only. Do keep the contract notes and statements, since the gain is reported in your Indian return in rupee terms at the applicable exchange rates.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How long does it take to get started?</summary>
+        <div class="answer">
+          <p>Account opening is fully digital and usually completes within a few working days, subject to KYC and FATCA/CRS verification. Your first LRS remittance typically settles in one to two working days once your bank has processed Form A2.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="open">
+  <div class="wrap">
+    <svg class="bell ill" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <circle class="hair-2" cx="32" cy="9" r="4"/>
+      <path class="hair-2" d="M32 13 v5"/>
+      <path class="hair-2" d="M14 46 C14 27 20 18 32 18 C44 18 50 27 50 46"/>
+      <path class="hair-2" d="M9 46 H55"/>
+      <path class="hair" d="M22 46 C22 31 25 24 32 24 C39 24 42 31 42 46"/>
+      <path class="accent" d="M32 50 v4"/>
+      <circle class="accent" cx="32" cy="57" r="4"/>
+    </svg>
+    <p class="eyebrow" style="justify-content:center; display:inline-flex">Get started</p>
+    <h2>Be a shareholder in the companies you already live with.</h2>
+    <p>Open a Beyondly account in minutes. No account opening fee, no minimum balance, and your first order can be a single dollar.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary btn-lg" href="#">Open an account</a>
+      <a class="btn btn-ghost btn-lg" href="#faq">Read the fine print first</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="mark" href="#top">Beyondly<i>.</i></a>
+      <div class="foot-links">
+        <a href="#why">Why the US</a>
+        <a href="#markets">Markets</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+        <a href="#">Pricing</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+    <div class="disclosure">
+      <p><strong style="color:var(--paper)">Risk disclosure.</strong> Investments in securities are subject to market risk, including possible loss of principal. Past performance does not indicate future results. Investments denominated in foreign currency carry exchange-rate risk: movement in the USD–INR rate will affect your returns in rupee terms, in both directions.</p>
+      <p><strong style="color:var(--paper)">Regulatory.</strong> Beyondly is registered with the International Financial Services Centres Authority (IFSCA) and operates from GIFT City IFSC, Gujarat, India. IFSCA registration number: [to be inserted]. Registered entity name and address: [to be inserted]. Registration with IFSCA does not constitute an endorsement of the platform or a guarantee of returns.</p>
+      <p><strong style="color:var(--paper)">Tax and remittance.</strong> Remittances are made under the RBI Liberalised Remittance Scheme and are subject to FEMA and prevailing TCS provisions. Tax positions described on this page reflect rules as understood for FY 2026–27 and may change. Nothing here is tax, legal or investment advice; consult a qualified professional before investing.</p>
+      <p style="color:var(--muted-dim)">© 2026 Beyondly. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---- coverage tape ---- */
+  var tapeItems = [
+    "<b>US EQUITIES</b> NYSE &amp; NASDAQ",
+    "<b>ETFs</b> Index, sector, bond, thematic",
+    "<b>FRACTIONAL</b> From $1",
+    "<b>25 MARKETS</b> Beyond the US",
+    "<b>USD SETTLEMENT</b> Held in your name",
+    "<b>IFSCA</b> GIFT City IFSC",
+    "<b>NO STT</b> No stamp duty",
+    "<b>LRS</b> $250,000 per year"
+  ];
+  var row = document.getElementById("tapeRow");
+  if (row) {
+    var html = tapeItems.map(function (t) { return '<span class="tape-item">' + t + "</span>"; }).join("");
+    row.innerHTML = html + html; /* duplicated for a seamless loop */
+  }
+
+  /* ---- session board ---- */
+  var OPEN_MIN = 9 * 60 + 30;   /* 09:30 ET */
+  var CLOSE_MIN = 16 * 60;      /* 16:00 ET */
+  var PRE_MIN = 4 * 60;         /* 04:00 ET */
+  var AFTER_MIN = 20 * 60;      /* 20:00 ET */
+
+  function parts(tz) {
+    var f = new Intl.DateTimeFormat("en-US", {
+      timeZone: tz, hour12: false, weekday: "short",
+      hour: "2-digit", minute: "2-digit", second: "2-digit",
+      day: "numeric", month: "short"
+    });
+    var out = {};
+    f.formatToParts(new Date()).forEach(function (p) { out[p.type] = p.value; });
+    return out;
+  }
+
+  function to12(h) { var n = h % 12; return n === 0 ? 12 : n; }
+  function pad(n) { return String(n).padStart(2, "0"); }
+
+  function paintClock(idBase, p) {
+    var h = parseInt(p.hour, 10);
+    document.getElementById(idBase + "Time").innerHTML =
+      to12(h) + ":" + p.minute + ":" + p.second +
+      '<small>' + (h < 12 ? "AM" : "PM") + "</small>";
+    document.getElementById(idBase + "Date").textContent =
+      p.weekday + " " + p.day + " " + p.month;
+  }
+
+  var dot = document.getElementById("statusDot");
+  var statusText = document.getElementById("statusText");
+  var fill = document.getElementById("trackFill");
+  var head = document.getElementById("trackHead");
+  var msg = document.getElementById("sessionMsg");
+
+  function setState(cls, label, pct, message) {
+    dot.className = "dot " + cls;
+    statusText.textContent = label;
+    fill.style.width = pct + "%";
+    head.style.left = pct + "%";
+    msg.textContent = message;
+  }
+
+  function minutesUntil(mins) {
+    var h = Math.floor(mins / 60), m = mins % 60;
+    if (h === 0) return m + " min";
+    return h + "h " + pad(m) + "m";
+  }
+
+  function tick() {
+    var ny = parts("America/New_York");
+    var ind = parts("Asia/Kolkata");
+    paintClock("ny", ny);
+    paintClock("in", ind);
+
+    var now = parseInt(ny.hour, 10) * 60 + parseInt(ny.minute, 10);
+    var weekend = ny.weekday === "Sat" || ny.weekday === "Sun";
+
+    if (weekend) {
+      setState("shut", "Closed", 0,
+        "US markets are shut for the weekend. Orders placed now are queued for Monday's open.");
+    } else if (now >= OPEN_MIN && now < CLOSE_MIN) {
+      var pct = ((now - OPEN_MIN) / (CLOSE_MIN - OPEN_MIN)) * 100;
+      setState("live", "Open", pct,
+        "Regular trading is live. " + minutesUntil(CLOSE_MIN - now) + " left in the session.");
+    } else if (now >= PRE_MIN && now < OPEN_MIN) {
+      setState("pre", "Pre-market", 0,
+        "Pre-market is running. The regular session opens in " + minutesUntil(OPEN_MIN - now) + ".");
+    } else if (now >= CLOSE_MIN && now < AFTER_MIN) {
+      setState("pre", "After hours", 100,
+        "Regular trading has closed for the day. After-hours activity continues until 8:00 PM ET.");
+    } else {
+      var until = now < PRE_MIN ? PRE_MIN - now : (24 * 60 - now) + PRE_MIN;
+      setState("shut", "Closed", 0,
+        "US markets are shut. Pre-market reopens in about " + minutesUntil(until) + ".");
+    }
+  }
+
+  tick();
+  setInterval(tick, 1000);
+
+  /* ---- accordion: one panel at a time ---- */
+  var all = Array.prototype.slice.call(document.querySelectorAll(".faq-list details"));
+  all.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (!d.open) return;
+      all.forEach(function (o) { if (o !== d) o.open = false; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
