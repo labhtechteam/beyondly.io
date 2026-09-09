@@ -15,7 +15,7 @@
       var FAILURE_URL = "http://localhost:8000/kyc-failure.html";
       var msg = document.getElementById("msg");
 
-      var requestId = new URLSearchParams(window.location.search).get("request_id");
+      var requestId = new URLSearchParams(window.location.search).get("requestId");
 
       if (!requestId) {
         msg.textContent = "Missing request_id. Redirecting…";
