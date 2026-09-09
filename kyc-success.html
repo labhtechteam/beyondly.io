@@ -38,7 +38,8 @@
 
       xhr.onerror = function () {
         msg.textContent = "Network error. Redirecting…";
-        window.location.replace(FAILURE_URL);
+        console.error("Network error during KYC verification.");
+        // window.location.replace(FAILURE_URL);
       };
 
       xhr.send(JSON.stringify({ request_id: requestId }));
