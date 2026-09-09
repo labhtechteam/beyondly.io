@@ -10,7 +10,7 @@
     (function () {
       "use strict";
 
-      var API_URL = "http://localhost:8000/api/kyc/digilocker-success/";
+      var API_URL = "http://127.0.0.1:8000/api/kyc/digilocker-success/";
       var FORM_URL = "http://localhost:8000/kyc-form.html";
       var FAILURE_URL = "http://localhost:8000/kyc-failure.html";
       var msg = document.getElementById("msg");
@@ -19,7 +19,7 @@
 
       if (!requestId) {
         msg.textContent = "Missing request_id. Redirecting…";
-        window.location.replace(FAILURE_URL);
+        console.error("Missing request_id in URL parameters.");
         return;
       }
 
@@ -32,7 +32,7 @@
           window.location.replace(FORM_URL);
         } else {
           msg.textContent = "KYC verification failed. Redirecting…";
-          window.location.replace(FAILURE_URL);
+          console.log("KYC verification failed. Redirecting…");
         }
       };
 
