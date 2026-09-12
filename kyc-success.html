@@ -10,10 +10,10 @@
     (function () {
       "use strict";
 
-      var API_URL = "http://localhost:8000/api/kyc/digilocker-success/";
+      var API_URL = "http://localhost:8000/digilocker-success.html/";
       var requestId = new URLSearchParams(window.location.search).get("requestId");
       window.location.replace(API_URL + "?requestId=" + requestId);
-    })
+    })();
     </script>
 </body>
 </html>
