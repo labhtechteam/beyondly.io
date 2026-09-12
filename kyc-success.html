@@ -11,39 +11,9 @@
       "use strict";
 
       var API_URL = "http://localhost:8000/api/kyc/digilocker-success/";
-      var FORM_URL = "http://localhost:8000/kyc-form.html";
-      var FAILURE_URL = "http://localhost:8000/kyc-failure.html";
-      var msg = document.getElementById("msg");
-
       var requestId = new URLSearchParams(window.location.search).get("requestId");
-
-      if (!requestId) {
-        msg.textContent = "Missing request_id. Redirecting…";
-        console.error("Missing request_id in URL parameters.");
-        return;
-      }
-
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", API_URL, true);
-      xhr.setRequestHeader("Content-Type", "application/json");
-
-      xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          window.location.replace(FORM_URL);
-        } else {
-          msg.textContent = "KYC verification failed. Redirecting…";
-          console.log("KYC verification failed. Redirecting…");
-        }
-      };
-
-      xhr.onerror = function () {
-        msg.textContent = "Network error. Redirecting…";
-        console.error("Network error during KYC verification.");
-        // window.location.replace(FAILURE_URL);
-      };
-
-      xhr.send(JSON.stringify({ request_id: requestId }));
-    })();
-  </script>
+      window.location.replace(API_URL + "?requestId=" + requestId);
+    })
+    </script>
 </body>
 </html>
