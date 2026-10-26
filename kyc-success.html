@@ -10,7 +10,7 @@
     (function () {
       "use strict";
 
-      var API_URL = "http://localhost:8000/api/kyc/digilocker_success.html";
+      var API_URL = "http://127.0.0.1:8000/api/kyc/digilocker-success";
       var requestId = new URLSearchParams(window.location.search).get("requestId");
       window.location.replace(API_URL + "?requestId=" + requestId);
     })();
